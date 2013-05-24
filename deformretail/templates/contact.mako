@@ -33,7 +33,7 @@
       </li>
       <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
     </ul>
- 
+
     <section class="top-bar-section">
       <!-- Right Nav Section -->
       <ul class="right">
@@ -80,44 +80,62 @@
       </ul>
     </section>
   </nav>
- 
+
   <!-- End Top Bar -->
- 
- 
+
+
   <!-- Main Page Content and Sidebar -->
- 
+
   <div class="row">
- 
+
     <!-- Contact Details -->
     <div class="large-9 columns">
- 
+      % for msg in request.session.pop_flash():
+          ${msg}
+      % endfor
       <h3>Get in Touch!</h3>
       <p>We'd love to hear from you. You can either reach out to us as a whole and one of our awesome team members will get back to you, or if you have a specific question reach out to one of our staff. We love getting email all day <em>all day</em>.</p>
- 
+
       <div class="section-container auto" data-section>
         <section class="section">
           <h5 class="title"><a href="#panel1">Contact Our Company</a></h5>
           <div class="content" data-slug="panel1">
-            <form>
+            <form formid="contactform" method="post" action="/">
               <div class="row collapse">
+                % if form['name'].error:
+                    % for error in form['name'].error.messages():
+                        ${error}
+                    % endfor
+                % endif
+
                 <div class="large-2 columns">
-                  <label class="inline">Your Name</label>
+                  <label class="inline">${form['name'].title}</label>
                 </div>
                 <div class="large-10 columns">
-                  <input type="text" id="yourName" placeholder="Jane Smith">
+                  ${form['name'].serialize()|n}
                 </div>
               </div>
               <div class="row collapse">
+                % if form['email'].error:
+                    % for error in form['email'].error.messages():
+                        ${error}
+                    % endfor
+                % endif
                 <div class="large-2 columns">
-                  <label class="inline"> Your Email</label>
+                  <label class="inline">${form['email'].title}</label>
                 </div>
                 <div class="large-10 columns">
-                  <input type="text" id="yourEmail" placeholder="jane@smithco.com">
+                  ${form['email'].serialize()|n}
                 </div>
               </div>
-              <label>What's up?</label>
-              <textarea rows="4"></textarea>
-              <button type="submit" class="radius button">Submit</button>
+                % if form['comment'].error:
+                    % for error in form['comment'].error.messages():
+                        ${error}
+                    % endfor
+                % endif
+              <label>${form['comment'].title}</label>
+              ${form['comment'].serialize()|n}
+              <input type="submit" name="submit" value="Submit" class="radius button"/>
             </form>
           </div>
         </section>
@@ -139,12 +157,12 @@
         </section>
       </div>
     </div>
- 
+
     <!-- End Contact Details -->
- 
- 
+
+
     <!-- Sidebar -->
- 
+
 
     <div class="large-3 columns">
       <h5>Map</h5>
@@ -160,12 +178,12 @@
     </div>
     <!-- End Sidebar -->
   </div>
- 
+
   <!-- End Main Content and Sidebar -->
- 
- 
+
+
   <!-- Footer -->
- 
+
   <footer class="row">
     <div class="large-12 columns">
       <hr />
@@ -184,17 +202,17 @@
       </div>
     </div>
   </footer>
- 
+
   <!-- End Footer -->
- 
- 
- 
+
+
+
   <!-- Map Modal -->
- 
+
   <div class="reveal-modal" id="mapModal">
     <h4>Where We Are</h4>
     <p><img src="http://placehold.it/800x600" /></p>
- 
+
     <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
     <a href="#" class="close-reveal-modal">&times;</a>
   </div>
