@@ -3,6 +3,7 @@
 *.pyc
 *~
 .#*
+#*#
 .coverage
 coverage.xml
 build/
