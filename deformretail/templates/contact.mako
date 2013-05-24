@@ -27,7 +27,7 @@
       <li class="name">
         <h1>
           <a href="#">
-            Top Bar Title
+            Deform Retail Form Demo
           </a>
         </h1>
       </li>
