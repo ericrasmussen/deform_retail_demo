@@ -1,88 +1,4 @@
-## based on http://foundation.zurb.com/page-templates4/contact.html
-
-<!DOCTYPE html>
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8" />
-
-  <!-- Set the viewport width to device width for mobile -->
-  <meta name="viewport" content="width=device-width" />
-
-  <link rel="shortcut icon" href="${request.static_url('deformretail:static/foundation/favicon.ico')}" />
-
-  <title>Deform retail rendering demo</title>
-
-  <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/normalize.css')}">
-  <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/foundation.css')}">
-
-  <script src="${request.static_url('deformretail:static/foundation/js/vendor/custom.modernizr.js')}"></script>
-
-</head>
-<body>
-
- <nav class="top-bar">
-    <ul class="title-area">
-      <!-- Title Area -->
-      <li class="name">
-        <h1>
-          <a href="#">
-            Deform Retail Form Demo
-          </a>
-        </h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-    </ul>
-
-    <section class="top-bar-section">
-      <!-- Right Nav Section -->
-      <ul class="right">
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href="#">Main Item 1</a>
-          <ul class="dropdown">
-            <li><label>Section Name</label></li>
-            <li class="has-dropdown">
-              <a href="#" class="">Has Dropdown, Level 1</a>
-              <ul class="dropdown">
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Level 2</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><label>Section Name</label></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all &rarr;</a></li>
-          </ul>
-        </li>
-        <li class="divider"></li>
-        <li><a href="#">Main Item 2</a></li>
-        <li class="divider"></li>
-        <li class="has-dropdown">
-          <a href="#">Main Item 3</a>
-          <ul class="dropdown">
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all &rarr;</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </nav>
-
-  <!-- End Top Bar -->
-
+<%inherit file="base.mako"/>
 
   <!-- Main Page Content and Sidebar -->
 
@@ -102,11 +18,7 @@
           <div class="content" data-slug="panel1">
             <form formid="contactform" method="post" action="/">
               <div class="row collapse">
-                % if form['name'].error:
-                    % for error in form['name'].error.messages():
-                        ${error}
-                    % endfor
-                % endif
+                ${self.render_error(form['name'].error)}
 
                 <div class="large-2 columns">
                   <label class="inline">${form['name'].title}</label>
@@ -116,11 +28,7 @@
                 </div>
               </div>
               <div class="row collapse">
-                % if form['email'].error:
-                    % for error in form['email'].error.messages():
-                        ${error}
-                    % endfor
-                % endif
+              ${self.render_error(form['email'].error)}
                 <div class="large-2 columns">
                   <label class="inline">${form['email'].title}</label>
                 </div>
@@ -128,11 +36,7 @@
                   ${form['email'].serialize()|n}
                 </div>
               </div>
-                % if form['comment'].error:
-                    % for error in form['comment'].error.messages():
-                        ${error}
-                    % endfor
-                % endif
+              ${self.render_error(form['comment'].error)}
               <label>${form['comment'].title}</label>
               ${form['comment'].serialize()|n}
               <input type="submit" name="submit" value="Submit" class="radius button"/>
@@ -140,19 +44,9 @@
           </div>
         </section>
         <section class="section">
-          <h5 class="title"><a href="#panel2">Specific Person</a></h5>
+          <h5 class="title"><a href="#panel2">Notice</a></h5>
           <div class="content" data-slug="panel2">
-            <ul class="large-block-grid-5 small-block-grid-3">
-              <li><a href="mailto:mal@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Mal Reynolds</a></li>
-              <li><a href="mailto:zoe@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Zoe Washburne</a></li>
-              <li><a href="mailto:jayne@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Jayne Cobb</a></li>
-              <li><a href="mailto:doc@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Simon Tam</a></li>
-              <li><a href="mailto:killyouwithmymind@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">River Tam</a></li>
-              <li><a href="mailto:leafonthewind@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Hoban Washburne</a></li>
-              <li><a href="mailto:book@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Shepherd Book</a></li>
-              <li><a href="mailto:klee@serenity.bc.reb"><img src="http://placehold.it/200x200&amp;text=[person]">Kaywinnet Lee Fry</a></li>
-              <li><a href="mailto:inara@guild.comp.all"><img src="http://placehold.it/200x200&amp;text=[person]">Inarra Serra</a></li>
-            </ul>
+            You probably don't need to contact us. This is just a demo form.
           </div>
         </section>
       </div>
@@ -182,47 +76,14 @@
   <!-- End Main Content and Sidebar -->
 
 
-  <!-- Footer -->
+## mako defs
 
-  <footer class="row">
-    <div class="large-12 columns">
-      <hr />
-      <div class="row">
-        <div class="large-6 columns">
-          <p>&copy; Copyright no one at all. Go to town.</p>
-        </div>
-        <div class="large-6 columns">
-          <ul class="inline-list right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+<%def name="title()">Contact Demo</%def>
 
-  <!-- End Footer -->
-
-
-
-  <!-- Map Modal -->
-
-  <div class="reveal-modal" id="mapModal">
-    <h4>Where We Are</h4>
-    <p><img src="http://placehold.it/800x600" /></p>
-
-    <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
-    <a href="#" class="close-reveal-modal">&times;</a>
-  </div>
-
-  <script src="${request.static_url('deformretail:static/foundation/js/vendor/zepto.js')}"></script>
-  <script src="${request.static_url('deformretail:static/foundation/js/foundation.min.js')}"></script>
-  <script>
-    $(document).foundation();
-  </script>
-</body>
-
-
-</html>
+<%def name="render_error(error)">
+% if error:
+    % for e in error.messages():
+        ${e}
+    % endfor
+% endif
+</%def>
