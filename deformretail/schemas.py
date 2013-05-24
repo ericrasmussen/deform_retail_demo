@@ -10,8 +10,9 @@ class ContactSchema(colander.Schema):
         description='Your name',
     )
     email = colander.SchemaNode(
-        colander.Email(),
+        colander.String(),
         description='Your email',
+        validator=colander.Email(),
     )
     comment = colander.SchemaNode(
         colander.String(),
