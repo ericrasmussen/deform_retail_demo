@@ -11,7 +11,7 @@
 
   <link rel="shortcut icon" href="${request.static_url('deformretail:static/foundation/favicon.ico')}" />
 
-  <title>Welcome to Foundation</title>
+  <title>Deform retail rendering demo</title>
 
   <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/normalize.css')}">
   <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/foundation.css')}">
