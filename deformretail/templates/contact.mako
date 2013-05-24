@@ -9,12 +9,14 @@
   <!-- Set the viewport width to device width for mobile -->
   <meta name="viewport" content="width=device-width" />
 
+  <link rel="shortcut icon" href="${request.static_url('deformretail:static/foundation/favicon.ico')}" />
+
   <title>Welcome to Foundation</title>
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/foundation.css">
+  <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/normalize.css')}">
+  <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/foundation.css')}">
 
-  <script src="js/vendor/custom.modernizr.js"></script>
+  <script src="${request.static_url('deformretail:static/foundation/js/vendor/custom.modernizr.js')}"></script>
 
 </head>
 <body>
@@ -197,12 +199,8 @@
     <a href="#" class="close-reveal-modal">&times;</a>
   </div>
 
-  <script>
-  document.write('<script src=js/vendor/' +
-  ('__proto__' in {} ? 'zepto' : 'jquery') +
-  '.js><\/script>')
-  </script>
-  <script src="js/foundation.min.js"></script>
+  <script src="${request.static_url('deformretail:static/foundation/js/vendor/zepto.js')}"></script>
+  <script src="${request.static_url('deformretail:static/foundation/js/foundation.min.js')}"></script>
   <script>
     $(document).foundation();
   </script>
