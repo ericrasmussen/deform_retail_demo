@@ -1,11 +1,14 @@
 import deform
 import colander
 
-"""
-A very straightforward schema for our contact form.
-"""
 
 class ContactSchema(colander.Schema):
+    """
+    A very straightforward schema for our demo company contact form.
+
+    Maybe TODO: create an input widget that can use the placeholder tag.
+    """
+
     name = colander.SchemaNode(
         colander.String(),
         title='Your name',
