@@ -6,8 +6,23 @@
 
       <h3>${self.title()}</h3>
       <p>Here's a demo form for managing account information and preferences.
-      The preferences are in their own tab only for demonstration purposes, but
-      they are also a separate mapping in the deform account schema.
+      The preferences section has its own schema (and its own model in our
+      dummy data store), but is included as a nested mapping in the user account
+      schema. Here are some things to try:</p>
+
+      <ul style="list-style-position:inside;">
+        <li>Submit the form with missing fields</li>
+        <li>Submit the form with a bad email address or a bad number (like "A")
+            </li>
+        <li>Submit the form with all the tea types unchecked</li>
+        <li>Submit the form with valid data to have it updated for this
+            session</li>
+      </ul>
+
+      <p>
+        <span class="label">Note:</span>
+        Any data you submit will be stored in an unencrypted cookie
+        session for demo purposes only.
       </p>
 
       ## flash any messages in the session flash queue
