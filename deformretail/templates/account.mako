@@ -20,10 +20,9 @@
 
       <form formid="contactform" method="post" action="${request.route_url('account')}">
 
-        <div class="section-container auto" data-section>
-          <section class="section">
-            <h5 class="title"><a href="#panel1">Account Information</a></h5>
-            <div class="content" data-slug="panel1">
+        <div>
+            <h5 class="title">Account Information</h5>
+            <div>
 
 
               ## fields are keyed by name in deform `Form` objects
@@ -32,13 +31,11 @@
 
               ${render_input_field(form['email'])}
 
-              <input type="submit" name="submit" value="Save" class="radius button"/>
-
             </div>
-          </section>
-          <section class="section">
-            <h5 class="title"><a href="#panel2">Preferences</a></h5>
-            <div class="content" data-slug="panel2">
+            <div>
+
+              <fieldset>
+                  <legend>Preferences</legend>
 
               ## declare the start of a mapping for a nested schema
               ${form.start_mapping('preferences')}
@@ -72,9 +69,11 @@
               ## declare the end of a mapping for a nested schema
               ${form.end_mapping('preferences')}
 
-              <input type="submit" name="submit" value="Update" class="radius button"/>
+              </fieldset>
+
+              <input type="submit" name="submit" value="Save changes" class="radius button"/>
+
             </div>
-          </section>
         </div>
 
       </form>
