@@ -27,7 +27,7 @@
       <li class="name">
         <h1>
           <a href="#">
-            Deform Retail Form Demo
+            Deform Retail Form | ${self.title()}
           </a>
         </h1>
       </li>

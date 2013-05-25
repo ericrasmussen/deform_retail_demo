@@ -6,6 +6,13 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
 
+@view_config(route_name='home', renderer='home.mako')
+def home(request):
+    """
+    Our glorious home page. Nothing fancy.
+    """
+    return {}
+
 @view_config(route_name='contact', renderer='contact.mako')
 def contact(request):
     """
