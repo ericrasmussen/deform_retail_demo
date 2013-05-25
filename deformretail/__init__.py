@@ -3,7 +3,7 @@ from pyramid.config import Configurator
 from pyramid.session import UnencryptedCookieSessionFactoryConfig
 
 
-def main(global_config, **settings):
+def main(global_config, **settings):  # pragma no cover
     """ This function returns a Pyramid WSGI application.
     """
     session_factory = UnencryptedCookieSessionFactoryConfig('not-so-secret')
