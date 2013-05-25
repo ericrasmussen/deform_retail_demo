@@ -1,5 +1,7 @@
 <%inherit file="base.mako"/>
 
+<%def name="title()">Contact Demo</%def>
+
   <!-- Main Page Content and Sidebar -->
 
   <div class="row">
@@ -22,7 +24,7 @@
         <section class="section">
           <h5 class="title"><a href="#panel1">Contact Our Company</a></h5>
           <div class="content" data-slug="panel1">
-            <form formid="contactform" method="post" action="/">
+            <form formid="contactform" method="post" action="${request.route_url('contact')}">
 
               ## fields are keyed by name in deform `Form` objects
 
@@ -73,8 +75,6 @@
 
 
 ## mako defs
-
-<%def name="title()">Contact Demo</%def>
 
 <%def name="render_input_field(field)">
     ## include the foundation error class if this field had an error
