@@ -1,13 +1,20 @@
 <%inherit file="base.mako"/>
 
-<%def name="title()">Contact Demo</%def>
+<%def name="title()">Company Contact Demo</%def>
 
     <!-- Contact Details -->
 
       <h3>${self.title()}</h3>
-      <p>Here's a snazzy contact form. Try submitting the form with missing
-      fields or a malformed email address to view error rendering. Try
-      submitting the form with valid input too.</p>
+      <p>This demo shows off a snazzy company contact form. Your input will be
+      validated by deform using a colander schema. Here are some
+      things to try:</p>
+
+      <ul style="list-style-position:inside;">
+        <li>Submit the form with one or more blank fields</li>
+        <li>Submit the form with a malformed email address (like "me@here")</li>
+        <li>Submit the form with a well-formed email address and all fields
+            filled in</li>
+      </ul>
 
       ## flash any messages in the session flash queue
       % for msg in request.session.pop_flash():
@@ -37,10 +44,10 @@
           </div>
         </section>
         <section class="section">
-          <h5 class="title"><a href="#panel2">Notice</a></h5>
+          <h5 class="title"><a href="#panel2">More Options</a></h5>
           <div class="content" data-slug="panel2">
-            You probably don't need to contact us. This is just a demo form with
-            tabs.
+            This is just here to show off the nicely tabbed sections. No more
+            options, I'm afraid.
           </div>
         </section>
       </div>

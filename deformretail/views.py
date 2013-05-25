@@ -1,3 +1,10 @@
+"""
+These views are designed to show off custom styled forms with the `deform`
+library. To keep things simple and show how you could make a working example,
+there is some boilerplate in each of these views. In a real world application
+it would be better to factor out the common code into helper functions.
+"""
+
 import deform
 
 from pyramid.httpexceptions import HTTPFound
@@ -19,25 +26,37 @@ def home(request):
 @view_config(route_name='contact', renderer='contact.mako')
 def contact(request):
     """
-    A basic contact form with field validation by deform.
+    A basic contact form with field validation by deform. We have to handle
+    three conditions:
+
+    1) Page visit with no POST request: display a blank form
+    2) POST request that fails validation: return the form with errors
+    3) Successful POST request: flash a success message and redirect
     """
+    # see if a user submitted the form
     submitted = 'submit' in request.POST
+
+    # get the form control field names and values as a list of tuples
     controls = request.POST.items()
+
+    # instantiate our colander schema
     schema = ContactSchema()
+
+    # create a deform form object from the schema
     form = deform.Form(schema)
 
-    # a user submitted the form
+    # if this is a POST request and the user submitted information:
     if submitted:
-        # if the fields are valid, flash success and return a blank form
+        # try to validate the form and redirect with a success message
         try:
             appstruct = form.validate(controls)
-            request.session.flash("We'll respond eventually -- thanks!")
+            request.session.flash("We'll respond eventually! (not really)")
             return HTTPFound(location=request.route_url('contact'))
-        # if the form failed, return it errors and all
+        # if validation failed, the form object will now contain error messages
         except deform.ValidationFailure, e:
             return {'form': form}
 
-    # otherwise render the blank form
+    # otherwise return the blank form object
     return {'form': form}
 
 @view_config(route_name='account', renderer='account.mako')
