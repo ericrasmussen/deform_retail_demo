@@ -11,10 +11,10 @@
       <h2>Deform Retail Form Demos</h2>
 
       <p>Hi there. This is a very simple site designed to show off the new
-      retail form rendering capabilities of deform. It's a feature that lets
-      you expose individual form fields to your template for fine-grained
-      control over how they render, without sacrificing the power of colander
-      and deform for schemas and validation.</p>
+      retail form rendering capabilities of deform by Chris McDonough. It's a
+      feature that lets you expose individual form fields to your template for
+      fine-grained control over how they render, without sacrificing the power
+      of colander and deform for schemas and validation.</p>
 
       <p>You can read the official docs
       <a href="http://deform.readthedocs.org/en/latest/retail.html">here</a>.
