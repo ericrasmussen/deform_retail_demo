@@ -54,3 +54,5 @@
       library.</p>
 
       <p>-<a href="http://chromaticleaves.com">Eric Rasmussen</a></p>
+
+<%def name="template_source()">https://github.com/ericrasmussen/deform_retail_demo/blob/master/deformretail/templates/home.mako</%def>
