@@ -2,11 +2,7 @@
 
 <%def name="title()">Home</%def>
 
-  <!-- Main Page Content -->
-
-  <div class="row">
-
-    <div class="large-9 columns">
+      <!-- Main Page Content -->
 
       <h2>Deform Retail Form Demos</h2>
 
@@ -57,30 +53,4 @@
       wanted to show how you could use retail form rendering with a different
       library.</p>
 
-      <p>-Eric Rasmussen</p>
-
-
-      <p>
-        <a href="https://github.com/ericrasmussen/deform_retail_demo">
-          View this site's source on github
-        </a>
-      </p>
-
-      <p>
-        <a href="http://chromaticleaves.com">
-          View more from me on Chromatic Leaves
-        </a>
-      </p>
-
-    </div>
-
-
-    <div class="large-3 columns">
-      <h3>Example Forms</h3>
-      <ul class="no-bullet">
-        <li><a href="${request.route_url('contact')}">Contact</a></li>
-        <li><a href="">Account Preferences</a></li>
-      </ul>
-    </div>
-
-  </div>
+      <p>-<a href="http://chromaticleaves.com">Eric Rasmussen</a></p>

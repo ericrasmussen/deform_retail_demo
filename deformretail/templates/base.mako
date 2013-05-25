@@ -26,8 +26,8 @@
       <!-- Title Area -->
       <li class="name">
         <h1>
-          <a href="#">
-            Deform Retail Form | ${self.title()}
+          <a href="${request.route_url('home')}">
+            Deform Retail Form Demos
           </a>
         </h1>
       </li>
@@ -39,42 +39,25 @@
       <ul class="right">
         <li class="divider"></li>
         <li class="has-dropdown">
-          <a href="#">Main Item 1</a>
+          <a href="#">Links</a>
           <ul class="dropdown">
-            <li><label>Section Name</label></li>
-            <li class="has-dropdown">
-              <a href="#" class="">Has Dropdown, Level 1</a>
-              <ul class="dropdown">
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Dropdown Options</a></li>
-                <li><a href="#">Level 2</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-                <li><a href="#">Subdropdown Option</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
+            <li><label>Deform</label></li>
+            <li><a href="http://deform.readthedocs.org/">Deform Docs</a></li>
+            <li><a href="http://deformdemo.repoze.org/">Deform Demo Site</a></li>
+            <li><a href="http://deform.readthedocs.org/en/latest/retail.html">Deform Retail Rendering</a></li>
             <li class="divider"></li>
-            <li><label>Section Name</label></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all &rarr;</a></li>
+            <li><label>Software used on this page</label></li>
+            <li><a href="http://www.pylonsproject.org/">Pyramid</a></li>
+            <li><a href="http://www.makotemplates.org/">Mako</a></li>
+            <li><a href="http://foundation.zurb.com/">Foundation</a></li>
           </ul>
         </li>
         <li class="divider"></li>
-        <li><a href="#">Main Item 2</a></li>
-        <li class="divider"></li>
         <li class="has-dropdown">
-          <a href="#">Main Item 3</a>
+          <a href="#">More</a>
           <ul class="dropdown">
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li><a href="#">Dropdown Option</a></li>
-            <li class="divider"></li>
-            <li><a href="#">See all &rarr;</a></li>
+            <li><a href="https://github.com/ericrasmussen/deform_retail_demo">Github Source</a></li>
+            <li><a href="http://chromaticleaves.com">Chromatic Leaves (blog)</a></li>
           </ul>
         </li>
       </ul>
@@ -84,8 +67,31 @@
   <!-- End Top Bar -->
 
 
-  ${self.body()}
+  <!-- Main Page Content and Sidebar -->
 
+  <div class="row">
+
+    <div class="large-9 columns">
+
+      ${self.body()}
+
+    </div>
+
+    <!-- Sidebar -->
+
+    <div class="large-3 columns">
+      <h3>Example Forms</h3>
+      <ul class="no-bullet">
+        <li><a href="${request.route_url('contact')}">Contact</a></li>
+        <li><a href="">Account Preferences</a></li>
+      </ul>
+    </div>
+
+    <!-- End Sidebar -->
+
+  </div>
+
+  <!-- End Main Content and Sidebar -->
 
   <!-- Footer -->
 

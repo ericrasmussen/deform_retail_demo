@@ -2,15 +2,12 @@
 
 <%def name="title()">Contact Demo</%def>
 
-  <!-- Main Page Content and Sidebar -->
-
-  <div class="row">
-
     <!-- Contact Details -->
-    <div class="large-9 columns">
 
-      <h3>Get in Touch!</h3>
-      <p>We'd love to hear from you. You can either reach out to us as a whole and one of our awesome team members will get back to you, or if you have a specific question reach out to one of our staff. We love getting email all day <em>all day</em>.</p>
+      <h3>${self.title()}</h3>
+      <p>Here's a snazzy contact form. Try submitting the form with missing
+      fields or a malformed email address to view error rendering. Try
+      submitting the form with valid input too.</p>
 
       ## flash any messages in the session flash queue
       % for msg in request.session.pop_flash():
@@ -48,33 +45,11 @@
         </section>
       </div>
 
-    </div>
-
     <!-- End Contact Details -->
 
 
-    <!-- Sidebar -->
 
-
-    <div class="large-3 columns">
-      <h5>Map</h5>
-      <!-- Clicking this placeholder fires the mapModal Reveal modal -->
-      <p>
-        <a href="" data-reveal-id="mapModal"><img src="http://placehold.it/400x280"></a><br />
-        <a href="" data-reveal-id="mapModal">View Map</a>
-      </p>
-      <p>
-        123 Awesome St.<br />
-        Barsoom, MA 95155
-      </p>
-    </div>
-    <!-- End Sidebar -->
-  </div>
-
-  <!-- End Main Content and Sidebar -->
-
-
-## mako defs
+## helper function to render a text input field
 
 <%def name="render_input_field(field)">
     ## include the foundation error class if this field had an error
@@ -100,6 +75,9 @@
         </div>
 </%def>
 
+
+## helper function to render a textarea field
+
 <%def name="render_textarea(field)">
     ## include the foundation error class if this field had an error
     % if field.error:
@@ -115,6 +93,9 @@
 
         </div>
 </%def>
+
+
+## helper function to render error messages if the field has any errors
 
 <%def name="render_error(error)">
     ## include any error messages if present
