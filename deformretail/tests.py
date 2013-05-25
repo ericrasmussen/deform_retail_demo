@@ -4,7 +4,6 @@ from pyramid import testing
 
 
 class ViewTests(unittest.TestCase):
-
     """
     If you want to write good tests, look no further. No, really, don't look
     down and read any of these. The following tests are the bare minimum to
@@ -45,3 +44,32 @@ class ViewTests(unittest.TestCase):
         response = contact(request)
         self.assertEqual(response.location, 'http://example.com/contact')
 
+    def test_account_no_post(self):
+        from .views import account
+        from .datasource import DUMMY_USER
+        request = testing.DummyRequest()
+        response = account(request)
+        cstruct = response['form'].cstruct
+        self.assertEqual(DUMMY_USER.to_appstruct(), cstruct)
+
+    def test_account_bad_post(self):
+        from .views import account
+        request = testing.DummyRequest()
+        bad_prefs = dict(favorite_number='spam', tea_types=set())
+        request.POST = dict(name='', email='', preferences=bad_prefs,
+                            submit=True)
+        response = account(request)
+        for field in response['form']:
+            self.assertNotEqual(field.error, None)
+
+    def test_account_good_post(self):
+        from .views import account
+        from .datasource import DUMMY_USER
+        request = testing.DummyRequest()
+        controls = DUMMY_USER.to_appstruct()
+        controls['submit'] = True
+        request.POST = controls
+        request.route_url = lambda x: 'http://example.com/account'
+        response = account(request)
+        self.assertEqual(response.location, 'http://example.com/account')
+        self.assertIn('user_appstruct', request.session)

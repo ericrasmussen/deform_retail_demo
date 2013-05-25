@@ -65,8 +65,8 @@ class UserPreferences(object):
 # Dummy constants
 
 DUMMY_PREFERENCES = UserPreferences(
-    42,
+    '42',
     set(['black', 'puerh', 'oolong']),
 )
 
-DUMMY_USER = UserAccount('Ima Person', 'email@example.com', DUMMY_PREFERENCES)
+DUMMY_USER = UserAccount(u'Ima Person', u'email@example.com', DUMMY_PREFERENCES)
