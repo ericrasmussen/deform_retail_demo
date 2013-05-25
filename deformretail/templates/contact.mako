@@ -6,50 +6,46 @@
 
     <!-- Contact Details -->
     <div class="large-9 columns">
-      % for msg in request.session.pop_flash():
-          ${msg}
-      % endfor
+
       <h3>Get in Touch!</h3>
       <p>We'd love to hear from you. You can either reach out to us as a whole and one of our awesome team members will get back to you, or if you have a specific question reach out to one of our staff. We love getting email all day <em>all day</em>.</p>
+
+      ## flash any messages in the session flash queue
+      % for msg in request.session.pop_flash():
+      <div data-alert class="alert-box success">
+          ${msg}
+            <a href="#" class="close">&times;</a>
+      </div>
+      % endfor
 
       <div class="section-container auto" data-section>
         <section class="section">
           <h5 class="title"><a href="#panel1">Contact Our Company</a></h5>
           <div class="content" data-slug="panel1">
             <form formid="contactform" method="post" action="/">
-              <div class="row collapse">
-                ${self.render_error(form['name'].error)}
 
-                <div class="large-2 columns">
-                  <label class="inline">${form['name'].title}</label>
-                </div>
-                <div class="large-10 columns">
-                  ${form['name'].serialize()|n}
-                </div>
-              </div>
-              <div class="row collapse">
-              ${self.render_error(form['email'].error)}
-                <div class="large-2 columns">
-                  <label class="inline">${form['email'].title}</label>
-                </div>
-                <div class="large-10 columns">
-                  ${form['email'].serialize()|n}
-                </div>
-              </div>
-              ${self.render_error(form['comment'].error)}
-              <label>${form['comment'].title}</label>
-              ${form['comment'].serialize()|n}
+              ## fields are keyed by name in deform `Form` objects
+
+              ${render_input_field(form['name'])}
+
+              ${render_input_field(form['email'])}
+
+              ${render_textarea(form['comment'])}
+
               <input type="submit" name="submit" value="Submit" class="radius button"/>
+
             </form>
           </div>
         </section>
         <section class="section">
           <h5 class="title"><a href="#panel2">Notice</a></h5>
           <div class="content" data-slug="panel2">
-            You probably don't need to contact us. This is just a demo form.
+            You probably don't need to contact us. This is just a demo form with
+            tabs.
           </div>
         </section>
       </div>
+
     </div>
 
     <!-- End Contact Details -->
@@ -80,10 +76,51 @@
 
 <%def name="title()">Contact Demo</%def>
 
+<%def name="render_input_field(field)">
+    ## include the foundation error class if this field had an error
+    % if field.error:
+        <div class="row collapse error">
+    % else:
+        <div class="row collapse">
+    % endif
+
+        ## display the field's title as a label
+          <div class="large-2 columns">
+              <label class="inline">${field.title}</label>
+          </div>
+
+        ## serialize the field (filter with "|n" so it won't escape the html)
+          <div class="large-10 columns">
+              ${field.serialize()|n}
+
+              ## render any error messages if present
+              ${render_error(field.error)}
+          </div>
+
+        </div>
+</%def>
+
+<%def name="render_textarea(field)">
+    ## include the foundation error class if this field had an error
+    % if field.error:
+        <div class="row collapse error">
+    % else:
+        <div class="row collapse">
+    % endif
+
+        ## render the label, textarea, and possibly error messages
+            <label>${field.title}</label>
+            ${form['comment'].serialize()|n}
+            ${render_error(field.error)}
+
+        </div>
+</%def>
+
 <%def name="render_error(error)">
-% if error:
-    % for e in error.messages():
-        ${e}
-    % endfor
-% endif
+    ## include any error messages if present
+    % if error:
+        % for e in error.messages():
+            <small>${e}</small>
+        % endfor
+    % endif
 </%def>
