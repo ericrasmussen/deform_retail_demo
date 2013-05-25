@@ -10,6 +10,8 @@ import deform
 from pyramid.httpexceptions import HTTPFound
 from pyramid.view import view_config
 
+from .datasource import UserAccount
+
 from .schemas import (
     ContactSchema,
     AccountSchema,
@@ -67,27 +69,37 @@ def account(request):
     could pass in the user's real account information and preferences from your
     data source.
     """
+    # see if a user submitted the form
     submitted = 'submit' in request.POST
+
+    # get the form control field names and values as a list of tuples
     controls = request.POST.items()
+
+    # instantiate our colander schema
     schema = AccountSchema()
+
+    # create a deform form object from the schema
     form = deform.Form(schema)
 
-    # a user submitted the form
+    # if this is a POST request and the user submitted information:
     if submitted:
-        # if the fields are valid, flash success and return a blank form
+        # try to validate the form and save the user/redirect on success
         try:
             appstruct = form.validate(controls)
-            request.session.flash("Account updated! (but not really)")
+            UserAccount.save(request, appstruct)
+            request.session.flash("Account updated! (this session only)")
             return HTTPFound(location=request.route_url('account'))
-        # if the form failed, return it errors and all
+        # if the form failed, return it with errors and don't save changes
         except deform.ValidationFailure, e:
             return {'form': form}
 
-    # otherwise create an appstruct with our fake user's information
-    # (in a real application this would be obtained from your data source)
-    preferences = {'favorite_number': 42,
-                   'tea_type': set(('black', 'puerh', 'oolong'))}
-    appstruct = {'name': 'Ima Person', 'email': 'email@example.com',
-                 'preferences': preferences}
-    populated_form = deform.Form(schema, appstruct=appstruct)
+    # otherwise retrieve the user from dummy storage
+    user = UserAccount.get_user(request)
+
+    # get the user data as an appstruct (in our case a dict)
+    user_appstruct = user.to_appstruct()
+
+    # pass the appstruct to the form to pre-populate the fields
+    populated_form = deform.Form(schema, appstruct=user_appstruct)
+
     return {'form': populated_form}
