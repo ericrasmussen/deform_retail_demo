@@ -93,7 +93,7 @@
 
       </form>
 
-    <!-- End Contact Details -->
+    <!-- End Account Details -->
 
 
 
