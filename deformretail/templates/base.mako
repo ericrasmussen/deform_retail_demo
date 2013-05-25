@@ -119,17 +119,6 @@
   <!-- End Footer -->
 
 
-
-  <!-- Map Modal -->
-
-  <div class="reveal-modal" id="mapModal">
-    <h4>Where We Are</h4>
-    <p><img src="http://placehold.it/800x600" /></p>
-
-    <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
-    <a href="#" class="close-reveal-modal">&times;</a>
-  </div>
-
   <script src="${request.static_url('deformretail:static/foundation/js/vendor/zepto.js')}"></script>
   <script src="${request.static_url('deformretail:static/foundation/js/foundation.min.js')}"></script>
   <script>
