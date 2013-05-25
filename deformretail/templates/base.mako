@@ -18,6 +18,22 @@
 
   <script src="${request.static_url('deformretail:static/foundation/js/vendor/custom.modernizr.js')}"></script>
 
+  <!-- make default deform fields play nice with foundation -->
+  <style>
+      .deform ul {
+          list-style-type: none;
+      }
+
+      .deform li {
+          display: block;
+          clear: left;
+      }
+
+      .deform label {
+          display: inline;
+      }
+  </style>
+
 </head>
 <body>
 
@@ -85,7 +101,7 @@
       <h3>Example Forms</h3>
       <ul class="no-bullet">
         <li><a href="${request.route_url('contact')}">Contact</a></li>
-        <li><a href="">Account Preferences</a></li>
+        <li><a href="${request.route_url('account')}">Account Preferences</a></li>
       </ul>
     </div>
 
