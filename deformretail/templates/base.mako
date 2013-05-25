@@ -75,6 +75,8 @@
 
       ${self.body()}
 
+      <p><a href="${self.template_source()}">Template source code</a></p>
+
     </div>
 
     <!-- Sidebar -->

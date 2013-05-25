@@ -13,7 +13,7 @@
       % for msg in request.session.pop_flash():
       <div data-alert class="alert-box success">
           ${msg}
-            <a href="#" class="close">&times;</a>
+          <a href="#" class="close">&times;</a>
       </div>
       % endfor
 
@@ -105,3 +105,8 @@
         % endfor
     % endif
 </%def>
+
+
+## template source code link
+
+<%def name="template_source()">https://github.com/ericrasmussen/deform_retail_demo/blob/master/deformretail/templates/contact.mako</%def>
