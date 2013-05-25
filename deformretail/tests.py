@@ -73,3 +73,13 @@ class ViewTests(unittest.TestCase):
         response = account(request)
         self.assertEqual(response.location, 'http://example.com/account')
         self.assertIn('user_appstruct', request.session)
+
+    def test_account_user_from_session(self):
+        from .views import account
+        from .datasource import DUMMY_USER
+        DUMMY_USER.name = 'new name'
+        request = testing.DummyRequest()
+        request.session['user_appstruct'] = DUMMY_USER.to_appstruct()
+        response = account(request)
+        saved_user = response['form'].cstruct
+        self.assertEqual(saved_user['name'], 'new name')
