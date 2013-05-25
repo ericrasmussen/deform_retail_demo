@@ -12,7 +12,8 @@
       fine-grained control over how they render, without sacrificing the power
       of colander and deform for schemas and validation.</p>
 
-      <p>You can read the official docs
+      <p>This is only a demo site to show off the features, but you can read the
+      official deform docs
       <a href="http://deform.readthedocs.org/en/latest/retail.html">here</a>.
       </p>
 
