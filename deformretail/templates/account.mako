@@ -127,10 +127,16 @@
 ## helper function to render error messages if the field has any errors
 
 <%def name="render_error(error)">
+    <%doc>
+      Deform errors sometimes use the TranslationString type, which require
+      special handling. We filter the error with `n` (no escape) and our own
+      `trans` filter to make sure it is rendered correctly.
+    </%doc>
+
     ## include any error messages if present
     % if error:
         % for e in error.messages():
-            <small>${e|n}</small>
+            <small>${e|n,trans}</small>
         % endfor
     % endif
 </%def>
@@ -139,3 +145,4 @@
 ## template source code link
 
 <%def name="template_source()">https://github.com/ericrasmussen/deform_retail_demo/blob/master/deformretail/templates/account.mako</%def>
+
