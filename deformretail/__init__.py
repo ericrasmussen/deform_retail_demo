@@ -15,6 +15,7 @@ def main(global_config, **settings):  # pragma no cover
     config.add_route('home', '/')
     config.add_route('contact', '/contact')
     config.add_route('account', '/account')
+    config.add_route('login', '/login')
 
     config.scan()
 

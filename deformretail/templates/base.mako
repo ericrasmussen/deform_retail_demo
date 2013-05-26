@@ -100,6 +100,7 @@
     <div class="large-3 columns">
       <h3>Example Forms</h3>
       <ul class="no-bullet">
+        <li><a href="${request.route_url('login')}">Login Form</a></li>
         <li><a href="${request.route_url('contact')}">Company Contact</a></li>
         <li><a href="${request.route_url('account')}">Account Preferences</a></li>
       </ul>

@@ -1,6 +1,9 @@
 import deform
 import colander
 
+# our dummy password checker
+from .datasource import UserAccount
+
 
 class ContactSchema(colander.Schema):
     """
@@ -75,3 +78,42 @@ class AccountSchema(colander.Schema):
 
     preferences = UserPreferencesSchema()
 
+
+@colander.deferred
+def deferred_password_validator(node, kw):
+    """
+    Uses colander's `Length` validator to check password length and then uses
+    a dummy password checker. This is a common pattern in deform when your
+    validator can't be created until you can inspect the node or other values
+    bound to the schema at the time it was created.
+    """
+    length_validator = colander.Length(min=5, max=100)
+
+    user_email = kw.get('user_email')
+
+    # create a colander validator that can access the `user_email`
+    def password_validator(node, value):
+        if not UserAccount.check_password(user_email, value):
+            raise colander.Invalid(node, 'Email or password invalid')
+
+    return colander.All(length_validator, password_validator)
+
+
+class LoginSchema(colander.Schema):
+    """
+    A simple login schema for authenticating users.
+    """
+    email = colander.SchemaNode(
+        colander.String(),
+        title='Email',
+        description='Your email',
+        validator=colander.Email(),
+    )
+
+    password = colander.SchemaNode(
+        colander.String(),
+        title='Password',
+        validator=deferred_password_validator,
+        widget=deform.widget.PasswordWidget(),
+        description='Your password',
+    )

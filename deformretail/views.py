@@ -15,6 +15,7 @@ from .datasource import UserAccount
 from .schemas import (
     ContactSchema,
     AccountSchema,
+    LoginSchema,
 )
 
 
@@ -104,3 +105,36 @@ def account(request):
     populated_form = deform.Form(schema, appstruct=user_appstruct)
 
     return {'form': populated_form}
+
+@view_config(route_name='login', renderer='login.mako')
+def login(request):
+    """
+    """
+    # see if a user submitted the form
+    submitted = 'submit' in request.POST
+
+    # get the user email from the POST request, if present
+    user_email = request.POST.get('email', '')
+
+    # get the form control field names and values as a list of tuples
+    controls = request.POST.items()
+
+    # instantiate our colander schema
+    schema = LoginSchema().bind(user_email=user_email)
+
+    # create a deform form object from the schema
+    form = deform.Form(schema)
+
+    # if this is a POST request and the user submitted information:
+    if submitted:
+        # try to validate the form and save the user/redirect on success
+        try:
+            appstruct = form.validate(controls)
+            request.session.flash("You are now logged in! (not really)")
+            location = request.route_url('login')
+            return HTTPFound(location=location)
+        # if the form failed, return it with errors and don't save changes
+        except deform.ValidationFailure, e:
+            return {'form': form}
+
+    return {'form': form}

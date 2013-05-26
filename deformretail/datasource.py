@@ -51,6 +51,13 @@ class UserAccount(object):
                                 prefs_struct['tea_type'])
         return UserAccount(name, email, prefs)
 
+    @classmethod
+    def check_password(cls, email, password):
+        """
+        Contrived dummy password checker. As long as the email doesn't equal
+        the password it will return True.
+        """
+        return email != password
 
 class UserPreferences(object):
     """
