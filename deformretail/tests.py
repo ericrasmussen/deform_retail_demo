@@ -83,3 +83,38 @@ class ViewTests(unittest.TestCase):
         response = account(request)
         saved_user = response['form'].cstruct
         self.assertEqual(saved_user['name'], 'new name')
+
+    def test_login_no_post(self):
+        from .views import login
+        import colander
+        request = testing.DummyRequest()
+        response = login(request)
+        for field in response['form']:
+            self.assertEqual(field.cstruct, colander.null)
+
+    def test_login_bad_post(self):
+        from .views import login
+        request = testing.DummyRequest()
+        request.POST = dict(email='', password='', submit=True)
+        response = login(request)
+        for field in response['form']:
+            self.assertNotEqual(field.error, None)
+
+    def test_login_bad_password(self):
+        from .views import login
+        request = testing.DummyRequest()
+        request.POST = dict(email='foo@example.com', password='foo@example.com',
+                            submit=True)
+        response = login(request)
+        expected_error = response['form']['password'].error
+        self.assertNotEqual(expected_error, None)
+
+    def test_login_good_post(self):
+        from .views import login
+        request = testing.DummyRequest()
+        request.POST = dict(email='test@example.com', password='12345',
+                            submit=True)
+        request.route_url = lambda x: 'http://example.com/login'
+        response = login(request)
+        self.assertEqual(response.location, 'http://example.com/login')
+
