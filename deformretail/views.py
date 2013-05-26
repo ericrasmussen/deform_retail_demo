@@ -88,7 +88,8 @@ def account(request):
             appstruct = form.validate(controls)
             UserAccount.save(request, appstruct)
             request.session.flash("Account updated! (this session only)")
-            return HTTPFound(location=request.route_url('account'))
+            location = request.route_url('account')
+            return HTTPFound(location=location)
         # if the form failed, return it with errors and don't save changes
         except deform.ValidationFailure, e:
             return {'form': form}

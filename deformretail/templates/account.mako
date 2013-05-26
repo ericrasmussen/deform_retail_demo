@@ -33,9 +33,10 @@
       </div>
       % endfor
 
-      <form formid="contactform" method="post" action="${request.route_url('account')}">
+      <form formid="accountform" method="post" action="${request.route_url('account', _anchor='account-form-top')}">
 
         <div>
+            <a id="account-form-top"></a>
             <h5 class="title">Account Information</h5>
             <div>
 
