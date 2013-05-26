@@ -10,7 +10,7 @@
       retail form rendering capabilities of deform by Chris McDonough. It's a
       feature that lets you expose individual form fields to your template for
       fine-grained control over how they render, without sacrificing the power
-      of colander and deform for schemas and validation.</p>
+      of colander for schemas and deform for validation.</p>
 
       <p>This is only a demo site to show off the features, but you can read the
       official deform docs
