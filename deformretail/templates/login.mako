@@ -1,6 +1,6 @@
 <%inherit file="base.mako"/>
 
-<%def name="title()">Login Preferences Demo</%def>
+<%def name="title()">Login Demo</%def>
 
     <!-- Login Details -->
 
