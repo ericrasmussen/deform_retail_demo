@@ -90,7 +90,7 @@
     ## include any error messages if present
     % if error:
         % for e in error.messages():
-            <small>${e|n,trans}</small>
+            <small>${e|n,translate}</small>
         % endfor
     % endif
 </%def>
