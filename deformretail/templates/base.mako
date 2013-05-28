@@ -15,24 +15,10 @@
 
   <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/normalize.css')}">
   <link rel="stylesheet" href="${request.static_url('deformretail:static/foundation/css/foundation.css')}">
+  <link rel="stylesheet" href="${request.static_url('deformretail:static/css/base.css')}">
+  <link rel="stylesheet" href="${request.static_url('deformretail:static/css/monokai.css')}">
 
   <script src="${request.static_url('deformretail:static/foundation/js/vendor/custom.modernizr.js')}"></script>
-
-  <!-- make default deform fields play nice with foundation -->
-  <style>
-      .deform ul {
-          list-style-type: none;
-      }
-
-      .deform li {
-          display: block;
-          clear: left;
-      }
-
-      .deform label {
-          display: inline;
-      }
-  </style>
 
 </head>
 <body>
@@ -120,6 +106,20 @@
       <div class="row">
         <div class="large-6 columns">
           <p>&copy; Copyright no one at all. Go to town.</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li>
+              <a href="https://github.com/ericrasmussen/deform_retail_demo/">
+                Source
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ericrasmussen/deform_retail_demo/issues">
+                Questions/Issues
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
