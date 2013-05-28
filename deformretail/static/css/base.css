@@ -1,0 +1,22 @@
+/* make deform and foundation styles play nice */
+.deform ul {
+    list-style-type: none;
+}
+
+.deform li {
+    display: block;
+    clear: left;
+}
+
+.deform label {
+    display: inline;
+}
+
+
+/* additional formatting for code blocks */
+.highlight {
+    margin: 0px 0px 1.25em;
+    padding: 0.5625em 1.25em 0px 1.1875em;
+    background-color: #49483e;
+}
+
