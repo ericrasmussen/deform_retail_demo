@@ -107,6 +107,20 @@
         <div class="large-6 columns">
           <p>&copy; Copyright no one at all. Go to town.</p>
         </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li>
+              <a href="https://github.com/ericrasmussen/deform_retail_demo/">
+                Source
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/ericrasmussen/deform_retail_demo/issues">
+                Questions/Issues
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </footer>
