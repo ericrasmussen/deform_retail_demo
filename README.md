@@ -14,5 +14,5 @@ requests or submit ideas on the github issue tracker.
 Where to Start
 --------------
 You can view this site [here](http://deformretail.chromaticleaves.com), or read
-the [officialdocs](http://deform.readthedocs.org/en/latest/retail.html).
+the [official docs](http://deform.readthedocs.org/en/latest/retail.html).
 
