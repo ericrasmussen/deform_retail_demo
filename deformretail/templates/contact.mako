@@ -5,17 +5,6 @@
     <!-- Contact Details -->
 
       <h3>${self.title()}</h3>
-      <p>This demo shows off a snazzy company contact form. Your input will be
-      validated by deform using a colander schema. Here are some
-      things to try:</p>
-
-      <ul style="list-style-position:inside;">
-        <li>Submit the form with one or more blank fields</li>
-        <li>Submit the form with a malformed email address (like "me@here")</li>
-        <li>Submit the form with a well-formed email address and all fields
-            filled in</li>
-      </ul>
-
       ## flash any messages in the session flash queue
       % for msg in request.session.pop_flash():
       <div data-alert class="alert-box success">
@@ -51,6 +40,17 @@
           </div>
         </section>
       </div>
+
+      <p>This demo shows off a snazzy company contact form. Your input will be
+      validated by deform using a colander schema. Here are some
+      things to try:</p>
+
+      <ul style="list-style-position:inside;">
+        <li>Submit the form with one or more blank fields</li>
+        <li>Submit the form with a malformed email address (like "me@here")</li>
+        <li>Submit the form with a well-formed email address and all fields
+            filled in</li>
+      </ul>
 
     <!-- End Contact Details -->
 

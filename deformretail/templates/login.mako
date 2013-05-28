@@ -5,18 +5,6 @@
     <!-- Login Details -->
 
       <h3>${self.title()}</h3>
-      <p>This demo shows off a basic login form. We use a deferred password
-      validator to let deform check the submitted email/password with
-      any password checker function. Try submitting the form with:</p>
-
-      <ul style="list-style-position:inside;">
-        <li>missing fields</li>
-        <li>a malformed email address</li>
-        <li>a password shorter than 5 characters or longer than 100</li>
-        <li>the email address as the password</li>
-        <li>a valid email address and a made-up password between 5-100
-        characters</li>
-      </ul>
 
       ## flash any messages in the session flash queue
       % for msg in request.session.pop_flash():
@@ -26,10 +14,9 @@
       </div>
       % endfor
 
-      <form formid="loginform" method="post" action="${request.route_url('login', _anchor='login-form-top')}">
+      <form formid="loginform" method="post" action="${request.route_url('login')}">
 
         <div>
-            <a id="login-form-top"></a>
             <h5 class="title">Sign-in Here</h5>
             <div>
 
@@ -46,6 +33,18 @@
         </div>
 
       </form>
+
+      <p>This demo shows off a basic login form. We use a deferred password
+      validator to let deform check the submitted email/password with
+      any password checker function. Try submitting the form with:</p>
+
+      <ul style="list-style-position:inside;">
+        <li>missing fields</li>
+        <li>a malformed email address</li>
+        <li>a password length < 5 or length > 100</li>
+        <li>the email address as the password</li>
+        <li>a valid email with a made up password between 5-100 characters</li>
+      </ul>
 
     <!-- End Login Details -->
 
@@ -82,9 +81,9 @@
 
 <%def name="render_error(error)">
     <%doc>
-      Deform errors sometimes use the TranslationString type, which require
-      special handling. We filter the error with `n` (no escape) and our own
-      `trans` filter to make sure it is rendered correctly.
+      Note: we use our own translate filter here to handle deform error messages
+      with the TranslationString type (they require additional processing
+      before rendering).
     </%doc>
 
     ## include any error messages if present

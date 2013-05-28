@@ -5,25 +5,6 @@
     <!-- Account Details -->
 
       <h3>${self.title()}</h3>
-      <p>Here's a demo form for managing account information and preferences.
-      The preferences section has its own schema (and its own model in our
-      dummy data store), but is included as a nested mapping in the user account
-      schema. Here are some things to try:</p>
-
-      <ul style="list-style-position:inside;">
-        <li>Submit the form with missing fields</li>
-        <li>Submit the form with a bad email address or a bad number (like "A")
-            </li>
-        <li>Submit the form with all the tea types unchecked</li>
-        <li>Submit the form with valid data to have it updated for this
-            session</li>
-      </ul>
-
-      <p>
-        <span class="label">Note:</span>
-        Any data you submit will be stored in an unencrypted cookie
-        session for demo purposes only.
-      </p>
 
       ## flash any messages in the session flash queue
       % for msg in request.session.pop_flash():
@@ -33,10 +14,9 @@
       </div>
       % endfor
 
-      <form formid="accountform" method="post" action="${request.route_url('account', _anchor='account-form-top')}">
+      <form formid="accountform" method="post" action="${request.route_url('account')}">
 
         <div>
-            <a id="account-form-top"></a>
             <h5 class="title">Account Information</h5>
             <div>
 
@@ -94,8 +74,24 @@
 
       </form>
 
-    <!-- End Account Details -->
+      <p>In this demo, everything in the "Preferences" fieldset is part of a nested
+      mapping in our main account schema (and it has its own class in our dummy
+      model). Try submitting the form with:</p>
 
+      <ul style="list-style-position:inside;">
+        <li>missing fields</li>
+        <li>a bad email address or a bad number (like "A")</li>
+        <li>all tea types unchecked</li>
+        <li>valid data (will be persisted for the session)</li>
+      </ul>
+
+      <p>
+        <span class="label">Note:</span>
+        Any data you submit will be stored in an unencrypted cookie
+        session for demo purposes only.
+      </p>
+
+    <!-- End Account Details -->
 
 
 ## helper function to render a text input field
@@ -129,9 +125,9 @@
 
 <%def name="render_error(error)">
     <%doc>
-      Deform errors sometimes use the TranslationString type, which require
-      special handling. We filter the error with `n` (no escape) and our own
-      `trans` filter to make sure it is rendered correctly.
+      Note: we use our own translate filter here to handle deform error messages
+      with the TranslationString type (they require additional processing
+      before rendering).
     </%doc>
 
     ## include any error messages if present
