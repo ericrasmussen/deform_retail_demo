@@ -11,6 +11,7 @@ requires = [
     'pyramid_debugtoolbar',
     'waitress',
     'deform',
+    'pygments',
     ]
 
 setup(name='deformretail',
