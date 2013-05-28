@@ -31,7 +31,7 @@ def translate(text):
 
     Example:
 
-        ${my_deform_error|n,trans}
+        ${my_deform_error|n,translate}
     """
     if isinstance(text, TranslationString):
         return text.interpolate()
