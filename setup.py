@@ -11,7 +11,6 @@ requires = [
     'pyramid_debugtoolbar',
     'waitress',
     'deform',
-    'docutils',
     'pygments',
     ]
 
