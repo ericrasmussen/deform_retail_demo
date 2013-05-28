@@ -27,7 +27,7 @@
 
               ${render_input_field(form['password'])}
 
-              <input type="submit" name="submit" value="Save changes" class="radius button"/>
+              <input type="submit" name="submit" value="Sign in" class="radius button"/>
 
             </div>
         </div>
